@@ -1,5 +1,8 @@
 package com.sena.app.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Book {
     private static int nextId = 1;
     private int id;
@@ -7,6 +10,9 @@ public class Book {
     private String edititionDate;
     private String editorial;
     private String isbn;
+    private List<String> authors;
+    private boolean readed;
+    private int timeReaded;
 
     public Book(String title, String edititionDate, String editorial, String isbn) {
         this.id = nextId++;
@@ -14,6 +20,14 @@ public class Book {
         this.edititionDate = edititionDate;
         this.editorial = editorial;
         this.isbn = isbn;
+
+        this.authors = new ArrayList<>();
+        this.readed = false;
+        this.timeReaded = 0;
+    }
+
+    public String toString (){
+        return "ID: " + id + "\nTitle:" + title + "\nEdition Date: " + edititionDate + "\nEditorial: " + editorial + "\nISBN: " + isbn + "\nAuthors: " + authors + "\nReaded: " + readed + "\nTime Readed: " + timeReaded;
     }
 
     public static int getNextId() {
@@ -64,6 +78,28 @@ public class Book {
         this.isbn = isbn;
     }
 
-    
+    public List<String> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<String> authors) {
+        this.authors = authors;
+    }
+
+    public boolean isReaded() {
+        return readed;
+    }
+
+    public void setReaded(boolean readed) {
+        this.readed = readed;
+    }
+
+    public int getTimeReaded() {
+        return timeReaded;
+    }
+
+    public void setTimeReaded(int timeReaded) {
+        this.timeReaded = timeReaded;
+    }
 
 }
