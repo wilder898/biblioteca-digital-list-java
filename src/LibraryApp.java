@@ -4,15 +4,15 @@ import java.util.Scanner;
 import com.sena.app.models.Book;
 
 public class LibraryApp {
-    private static Scanner sacanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
     private static List<Book> library = new ArrayList<>();
 
     public static void main(String[] args) {
         int opcion;
         do {
             mostrarMenu();
-            opcion = sacanner.nextInt();
-            sacanner.nextLine();
+            opcion = scanner.nextInt();
+            scanner.nextLine();
 
             switch (opcion) {
                 case 1:
@@ -26,7 +26,7 @@ public class LibraryApp {
             }
         } while (opcion != 0);
 
-        sacanner.close();
+        scanner.close();
     }
 
     private static void mostrarMenu(){
@@ -37,5 +37,26 @@ public class LibraryApp {
     System.out.println("0. 🚪 Salir");
     System.out.println("═══════════════════════════════════════");
     System.out.print("Seleccione una opción: ");
+    }
+
+    private static void crearLibro() {
+        System.out.println("\\n--- ➕ CREAR NUEVO LIBRO ---");
+    
+        System.out.print("Título: ");
+        String title = scanner.nextLine();
+    
+        System.out.print("Fecha de edición (YYYY-MM-DD): ");
+        String editionDate = scanner.nextLine();
+    
+        System.out.print("Editorial: ");
+        String editorial = scanner.nextLine();
+    
+        System.out.print("ISBN: ");
+        String isbn = scanner.nextLine();
+    
+        Book newBook = new Book(title, editionDate, editorial, isbn);
+        library.add(newBook);
+    
+        System.out.println("✅ Libro agregado exitosamente!");
     }
 }
