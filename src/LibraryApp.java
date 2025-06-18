@@ -1,5 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import com.sena.app.models.Book;
+
 public class LibraryApp {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+    private static Scanner sacanner = new Scanner(System.in);
+    private static List<Book> library = new ArrayList<>();
+
+    public static void main(String[] args) {
+        System.out.println("🚀 Biblioteca Digital - Versión 1.0");
+
+        sacanner.close();
     }
 }
