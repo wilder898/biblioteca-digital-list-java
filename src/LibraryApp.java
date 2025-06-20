@@ -56,6 +56,23 @@ public class LibraryApp {
     
         Book newBook = new Book(title, editionDate, editorial, isbn);
         library.add(newBook);
+
+        System.out.println("Autores (separados por comas): ");
+        String authorsInput = scanner.nextLine();
+        String[] authors = authorsInput.split(",");
+        for (String author : authors) {
+            newBook.getAuthors().add(author.trim());
+        }
+
+        System.out.print("¿Está leído? (true/false): ");
+        boolean isReaded = scanner.nextBoolean();
+        newBook.setReaded(isReaded);
+
+    if (isReaded) {
+        System.out.print("Horas de lectura: ");
+        int timeReaded = scanner.nextInt();
+        newBook.setTimeReaded(timeReaded);
+    }
     
         System.out.println("✅ Libro agregado exitosamente!");
     }
