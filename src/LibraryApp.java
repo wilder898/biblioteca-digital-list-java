@@ -16,7 +16,11 @@ public class LibraryApp {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("Crear libro - En desarrollo");
+                    crearLibro();
+                    break;
+                
+                case 2:
+                    leerLibros();
                     break;
                 case 0:
                     System.out.println("¡Gracias por usar la biblioteca!");
@@ -34,13 +38,14 @@ public class LibraryApp {
     System.out.println("           BIBLIOTECA DIGITAL");
     System.out.println("═══════════════════════════════════════");
     System.out.println("1. ➕ Crear nuevo libro");
+    System.out.println("2. Consultar Libro");
     System.out.println("0. 🚪 Salir");
     System.out.println("═══════════════════════════════════════");
     System.out.print("Seleccione una opción: ");
     }
 
     private static void crearLibro() {
-        System.out.println("\\n--- ➕ CREAR NUEVO LIBRO ---");
+        System.out.println("\n--- ➕ CREAR NUEVO LIBRO ---");
     
         System.out.print("Título: ");
         String title = scanner.nextLine();
@@ -75,5 +80,18 @@ public class LibraryApp {
     }
     
         System.out.println("✅ Libro agregado exitosamente!");
+    }
+
+    private static void leerLibros(){
+        System.out.println("\n--- 📚 BIBLIOTECA COMPLETA ---");
+
+        if (library.isEmpty()) {
+            System.out.println("❌ No hay libros en la biblioteca.");
+            return;
+        }
+
+        for (Book book : library) {
+            System.out.println(book.toString());
+        }
     }
 }
