@@ -147,4 +147,35 @@ public class LibraryApp {
         Book libro = library.get(indice - 1);
         //TODO: Implementar menú de campos a actualizar 
     }
+
+    private static void eliminarLibro(){
+        System.out.println("\n--- ❌ ELIMINAR LIBRO ---");
+
+        if (library.isEmpty()){
+            System.out.println("❌ No hay libros para eliminar.");
+            return;
+        }
+
+        mostrarLibrosConIndices();
+
+        System.out.println("seleccione el numero del libro a eliminar: ");
+        int indice = scanner.nextInt();
+        scanner.nextLine();
+
+        if (indice < 1 || indice > library.size()) {
+        System.out.println("❌ Índice no válido.");
+        return;
+        }
+
+        Book libro = library.get(indice - 1);
+        System.out.print("¿Está seguro de eliminar '" + libro.getTitle() + "'? (s/n): ");
+        String confirmacion = scanner.nextLine();
+
+        if (confirmacion.equalsIgnoreCase("s") || confirmacion.equalsIgnoreCase("si")) {
+            library.remove(indice - 1);
+            System.out.println("✅ Libro eliminado exitosamente!");
+        } else {
+            System.out.println("❌ Eliminación cancelada.");
+        }
+    }
 }
