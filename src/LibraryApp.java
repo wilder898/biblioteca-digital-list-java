@@ -126,4 +126,25 @@ public class LibraryApp {
             System.out.println((i + 1) + ". " + library.get(i).getTitle());
         }
     }
+
+    private static void actualizarLibro(){
+        System.out.println("\\n--- ✏️ ACTUALIZAR LIBRO ---");
+
+        if (library.isEmpty()) {
+            System.out.println("❌ No hay libros para actualizar.");
+            return;
+        }
+        mostrarLibrosConIndices();
+
+        System.out.println("Seleccione el número del libro a actualizar: ");
+        int indice = scanner.nextInt();
+        scanner.nextLine();
+
+        if (indice < 1 || indice < library.size()) {
+            System.out.println("❌ Índice no válido.");
+            return;
+        }
+        Book libro = library.get(indice - 1);
+        //TODO: Implementar menú de campos a actualizar 
+    }
 }
