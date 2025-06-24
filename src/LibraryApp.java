@@ -144,7 +144,7 @@ public class LibraryApp {
     }
 
     private static void actualizarLibro(){
-        System.out.println("\\n--- ✏️ ACTUALIZAR LIBRO ---");
+        System.out.println("\n--- ✏️ ACTUALIZAR LIBRO ---");
 
         if (library.isEmpty()) {
             System.out.println("❌ No hay libros para actualizar.");
@@ -323,5 +323,17 @@ public class LibraryApp {
         System.out.printf("Promedio de horas por libro leído: %.2f%n", 
         librosLeidos > 0 ? (double) totalHoras / librosLeidos : 0.0);
     }
-    
+    private static void initializeLibrary() {
+        Book book1 = new Book("Effective Java", "2018-01-01", "Addison-Wesley", "978-0134686097");
+        book1.getAuthors().add("Joshua Bloch");
+        book1.setReaded(true);
+        book1.setTimeReaded(10);
+        library.add(book1);
+
+        Book book2 = new Book("Clean Code", "2008-08-01", "Prentice Hall", "978-0132350884");
+        book2.getAuthors().add("Robert C. Martin");
+        book2.setReaded(false);
+        book2.setTimeReaded(0);
+        library.add(book2);
+    }
 }
