@@ -26,6 +26,16 @@ public class LibraryApp {
                 case 3:
                     mostrarTablaLibros(library);
                     break;
+                case 4:
+                    buscarLibro();
+                    break;
+                case 5:
+                    actualizarLibro();
+                    break;
+                case 6:
+                    eliminarLibro();
+                    break;
+                
                 case 0:
                     System.out.println("¡Gracias por usar la biblioteca!");
                     break;
@@ -145,7 +155,65 @@ public class LibraryApp {
             return;
         }
         Book libro = library.get(indice - 1);
-        //TODO: Implementar menú de campos a actualizar 
+        //TODO: Implementar menú de campos a actualizar
+        System.out.println("¿Qué campo desea actualizar?");
+        System.out.println("1. Título");
+        System.out.println("2. Fecha de edición");
+        System.out.println("3. Editorial");
+        System.out.println("4. ISBN");
+        System.out.println("5. Autores");
+        System.out.println("6. Estado de lectura");
+        System.out.println("7. Horas de lectura");
+        System.out.print("Seleccione una opción: ");
+        int opcion = scanner.nextInt();
+        scanner.nextLine();
+        switch (opcion) {
+            case 1:
+                System.out.print("Nuevo título: ");
+                String nuevoTitulo = scanner.nextLine();
+                libro.setTitle(nuevoTitulo);
+                break;
+            case 2:
+                System.out.print("Nueva fecha de edición (YYYY-MM-DD): ");
+                String nuevaFecha = scanner.nextLine();
+                libro.setEditionDate(nuevaFecha);
+                break;
+            case 3:
+                System.out.print("Nueva editorial: ");
+                String nuevaEditorial = scanner.nextLine();
+                libro.setEditorial(nuevaEditorial);
+                break;
+            case 4:
+                System.out.print("Nuevo ISBN: ");
+                String nuevoIsbn = scanner.nextLine();
+                libro.setIsbn(nuevoIsbn);
+                break;
+            case 5:
+                System.out.println("Autores actuales: " + String.join(", ", libro.getAuthors()));
+                System.out.print("Nuevos autores (separados por comas): ");
+                String nuevosAutoresInput = scanner.nextLine();
+                String[] nuevosAutores = nuevosAutoresInput.split(",");
+                libro.getAuthors().clear();
+                for (String autor : nuevosAutores) {
+                    libro.getAuthors().add(autor.trim());
+                }
+                break;
+            case 6:
+                System.out.print("¿Está leído? (true/false): ");
+                boolean estaLeido = scanner.nextBoolean();
+                libro.setReaded(estaLeido);
+                if (estaLeido) {
+                    System.out.print("Horas de lectura: ");
+                    int horasLectura = scanner.nextInt();
+                    libro.setTimeReaded(horasLectura);
+                } else {
+                    libro.setTimeReaded(0); 
+                }
+                break;
+            default:
+                System.out.println("Opción no válida.");
+        }
+        System.out.println("✅ Libro actualizado exitosamente!");
     }
 
     private static void eliminarLibro(){
@@ -176,6 +244,52 @@ public class LibraryApp {
             System.out.println("✅ Libro eliminado exitosamente!");
         } else {
             System.out.println("❌ Eliminación cancelada.");
+        }
+    }
+    private static void buscarLibro() {
+        System.out.println("\\n--- 🔍 BUSCAR LIBRO ---");
+        System.out.println("Buscar por:");
+        System.out.println("1. Título");
+        System.out.println("2. Autor");
+        System.out.println("3. ISBN");
+        System.out.print("Opción: ");
+
+        int opcion = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Término de búsqueda: ");
+        String termino = scanner.nextLine().toLowerCase();
+
+        List<Book> resultados = new ArrayList<>();
+
+        switch (opcion) {
+            case 1: 
+                for (Book book : library) {
+                    if (book.getTitle().toLowerCase().contains(termino)) {
+                        resultados.add(book);
+                    }
+                }
+                break;
+            case 2:
+                for (Book book : library) {
+                    for (String author : book.getAuthors()) {
+                        if (author.toLowerCase().contains(termino)) {
+                            resultados.add(book);
+                            break;
+                        }
+                    }
+                }
+                break;
+            case 3:
+                for (Book book : library) {
+                    if (book.getIsbn().toLowerCase().contains(termino)) {
+                        resultados.add(book);
+                    }
+                }
+                break;
+            default:
+                System.out.println("Opción no válida.");
+                return;
         }
     }
 }
