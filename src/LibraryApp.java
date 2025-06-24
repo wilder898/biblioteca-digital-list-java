@@ -35,7 +35,9 @@ public class LibraryApp {
                 case 6:
                     eliminarLibro();
                     break;
-                
+                case 7:
+                    estadisticasBiblioteca();
+                    break;
                 case 0:
                     System.out.println("¡Gracias por usar la biblioteca!");
                     break;
@@ -54,6 +56,10 @@ public class LibraryApp {
     System.out.println("1. ➕ Crear nuevo libro");
     System.out.println("2. Consultar Libro");
     System.out.println("3. Mostrar Tabla de Libros");
+    System.out.println("4. 🔍 Buscar libro");
+    System.out.println("5. ✏️ Actualizar libro");
+    System.out.println("6. ❌ Eliminar libro");
+    System.out.println("7. 📊 Estadísticas de la biblioteca");
     System.out.println("0. 🚪 Salir");
     System.out.println("═══════════════════════════════════════");
     System.out.print("Seleccione una opción: ");
@@ -155,7 +161,7 @@ public class LibraryApp {
             return;
         }
         Book libro = library.get(indice - 1);
-        //TODO: Implementar menú de campos a actualizar
+        
         System.out.println("¿Qué campo desea actualizar?");
         System.out.println("1. Título");
         System.out.println("2. Fecha de edición");
@@ -292,4 +298,30 @@ public class LibraryApp {
                 return;
         }
     }
+    private static void estadisticasBiblioteca() {
+        System.out.println("\\n--- 📊 ESTADÍSTICAS DE LA BIBLIOTECA ---");
+
+        if (library.isEmpty()) {
+            System.out.println("❌ No hay libros en la biblioteca.");
+            return;
+        }
+
+        int totalLibros = library.size();
+        int librosLeidos = 0;
+        int totalHoras = 0;
+
+        for (Book libro : library) {
+            if (libro.isReaded()) {
+                librosLeidos++;
+                totalHoras += libro.getTimeReaded();
+            }
+        }
+
+        System.out.println("Total de libros: " + totalLibros);
+        System.out.println("Libros leídos: " + librosLeidos);
+        System.out.println("Horas totales de lectura: " + totalHoras);
+        System.out.printf("Promedio de horas por libro leído: %.2f%n", 
+        librosLeidos > 0 ? (double) totalHoras / librosLeidos : 0.0);
+    }
+    
 }
