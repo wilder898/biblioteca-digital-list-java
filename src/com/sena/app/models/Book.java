@@ -54,11 +54,11 @@ public class Book {
         this.title = title;
     }
 
-    public String getEdititionDate() {
+    public String getEditionDate() {
         return edititionDate;
     }
 
-    public void setEdititionDate(String edititionDate) {
+    public void setEditionDate(String edititionDate) {
         this.edititionDate = edititionDate;
     }
 
@@ -101,5 +101,7 @@ public class Book {
     public void setTimeReaded(int timeReaded) {
         this.timeReaded = timeReaded;
     }
+
+
 
 }
