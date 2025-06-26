@@ -8,6 +8,7 @@ public class LibraryApp {
     private static List<Book> library = new ArrayList<>();
 
     public static void main(String[] args) {
+        initializeLibrary();
         int opcion;
         do {
             mostrarMenu();
